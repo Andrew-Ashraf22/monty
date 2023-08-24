@@ -9,7 +9,7 @@ void execute_command(char *com, unsigned int line_count, stack_t **stack)
 {
 	int i = 0;
 
-	instruction_t inst[10] = {
+	instruction_t inst[14] = {
 	{"push", my_push},
 	{"pall", my_pall},
 	{"pint", my_pint},
@@ -19,10 +19,14 @@ void execute_command(char *com, unsigned int line_count, stack_t **stack)
 	{"nop", my_nop},
 	{"sub", my_sub},
 	{"div", my_div},
+	{"mul", my_mul},
+	{"mod", my_mod},
+	{"pchar", my_pchar},
+	{"pstr", my_pstr},
 	{NULL, NULL},
 	};
 
-	while ((i < 9))
+	while ((i < 13))
 	{
 		if (strcmp(com, inst[i].opcode) == 0)
 		{
@@ -31,7 +35,7 @@ void execute_command(char *com, unsigned int line_count, stack_t **stack)
 		}
 		i++;
 	}
-	if (i >= 9)
+	if (i >= 13)
 	{
 		fprintf(stderr, "Error: L%d: unknown instruction '%s'\n", line_count, com);
 		free_stack(stack);

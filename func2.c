@@ -118,3 +118,44 @@ void my_div(stack_t **stack, unsigned int line_number)
 	(*stack)->next->n /= (*stack)->n;
 	my_pop(stack, line_number);
 }
+/**
+ *my_mul - mul top 2 items
+ *@stack: the stack
+ *@line_number: num of lines
+ */
+void my_mul(stack_t **stack, unsigned int line_number)
+{
+	if (*stack == NULL || (*stack)->next == NULL)
+	{
+		fprintf(stderr, "Error: L%d: can't mul, stack too short\n", line_number);
+		free_stack(stack);
+		free_info();
+		exit(EXIT_FAILURE);
+	}
+	(*stack)->next->n *= (*stack)->n;
+	my_pop(stack, line_number);
+}
+/**
+ *my_mod - mod top 2 items
+ *@stack: the stack
+ *@line_number: num of lines
+ */
+void my_mod(stack_t **stack, unsigned int line_number)
+{
+	if (*stack == NULL || (*stack)->next == NULL)
+	{
+		fprintf(stderr, "Error: L%d: can't mod, stack too short\n", line_number);
+		free_stack(stack);
+		free_info();
+		exit(EXIT_FAILURE);
+	}
+	if ((*stack)->n == 0)
+	{
+		fprintf(stderr, "Error: L%d: division by zero\n", line_number);
+		free_stack(stack);
+		free_info();
+		exit(EXIT_FAILURE);
+	}
+	(*stack)->next->n %= (*stack)->n;
+	my_pop(stack, line_number);
+}
