@@ -26,7 +26,7 @@ void execute_command(char *com, unsigned int line_count, stack_t **stack)
 	{NULL, NULL},
 	};
 
-	while ((i < 14))
+	while ((i < 13))
 	{
 		if (strcmp(com, inst[i].opcode) == 0)
 		{
@@ -35,7 +35,7 @@ void execute_command(char *com, unsigned int line_count, stack_t **stack)
 		}
 		i++;
 	}
-	if (i >= 14)
+	if (i >= 13)
 	{
 		fprintf(stderr, "Error: L%d: unknown instruction '%s'\n", line_count, com);
 		free_stack(stack);

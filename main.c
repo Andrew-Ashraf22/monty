@@ -58,7 +58,6 @@ void execute_file(const char *m_file, stack_t **stack)
 		execute_command(com, line_count, stack);
 		free(com);
 	}
-	free(info.hold);
 	free_stack(stack);
 	fclose(file);
 }
