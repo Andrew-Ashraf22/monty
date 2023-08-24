@@ -1,4 +1,5 @@
 #include "monty.h"
+void nothing(void);
 inf_s info = {NULL, NULL, NULL};
 /**
 * main - monty interpreter

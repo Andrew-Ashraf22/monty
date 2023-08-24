@@ -6,35 +6,50 @@
  */
 void my_push(stack_t **stack, unsigned int line_number)
 {
-	stack_t *new;
-	(void)line_number;
+	char *hold = info.hold;
+	int n, i = 0;
 
-	new = malloc(sizeof(stack_t));
-	if (new == NULL)
+	if (!hold)
 	{
-		fprintf(stderr, "Error: malloc failed\n");
+		fprintf(stderr, "L%d: usage: push integer\n", line_number);
 		free_stack(stack);
 		free_info();
 		exit(EXIT_FAILURE);
 	}
-	if (strcmp(info.hold, "0") != 0)
+	
+	if (hold[0] == '-')
+		i++;
+	for (; hold[i] != '\0'; i++)
 	{
-		new->n = atoi(info.hold);
-		if (new->n == 0)
+		if (hold[i] > 57 || hold[i] < 48)
 		{
 			fprintf(stderr, "L%d: usage: push integer\n", line_number);
 			free_stack(stack);
 			free_info();
-			free(new);
 			exit(EXIT_FAILURE);
 		}
 	}
-	else
-	{
-		info.hold = 0;
-		new->n = 0;
-	}
-	new->prev = NULL;
+	n = atoi(hold);
+	addnode(stack, n);
+}
+/**
+ * addnode - add node to stack
+ * @stack: the stack
+ * @n: the stack n
+ */
+void addnode(stack_t **stack, int n)
+{
+	stack_t *new;
+
+	new = malloc(sizeof(stack_t));
+        if (new == NULL)
+        {
+                fprintf(stderr, "Error: malloc failed\n");
+                free_stack(stack);
+                free_info();
+                exit(EXIT_FAILURE);
+        }
+	new->n = n;
 	if (*stack == NULL)
 	{
 		new->next = NULL;
