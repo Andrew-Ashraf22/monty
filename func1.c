@@ -11,13 +11,21 @@ void my_push(stack_t **stack, unsigned int line_number)
 		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
-
-	new->n = atoi(info.hold);
-
-	if (!isdigit(new->n))
+	
+	if (strcmp(info.hold, "0") != 0)
 	{
-		fprintf(stderr, "L%d: usage: push integer\n", line_number);
-		exit(EXIT_FAILURE);
+		new->n = atoi(info.hold);
+	
+		if (new->n == 0)
+		{
+			fprintf(stderr, "L%d: usage: push integer\n", line_number);
+			exit(EXIT_FAILURE);
+		}
+	}
+	else
+	{
+		info.hold = 0;
+		new->n = 0;
 	}
 	new->prev = NULL;
 
