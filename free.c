@@ -15,7 +15,9 @@ void free_stack(stack_t **head)
 		(*head) = temp;
 	}
 }
-
+/**
+ * free_info - free the info struct
+ */
 void free_info(void)
 {
 	free(info.command);

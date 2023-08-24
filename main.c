@@ -1,13 +1,11 @@
 #include "monty.h"
+inf_s info = {NULL, NULL, NULL};
 /**
 * main - monty interpreter
 * @argc: num of args
 * @argv: CLA
 * Return: 0 if succ
 */
-void execute_file(const char *m_file, stack_t **stack);
-
-inf_s info = {NULL, NULL, NULL};
 int main(int argc, char *argv[])
 {
 	stack_t *stack = NULL;
@@ -17,11 +15,15 @@ int main(int argc, char *argv[])
 		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
-	
 	execute_file(argv[1], &stack);
 	exit(EXIT_SUCCESS);
 }
 
+/**
+ * execute_file - exc the file
+ *@m_file: monty file
+ *@stack: the stack
+ */
 void execute_file(const char *m_file, stack_t **stack)
 {
 	unsigned int line_count = 0;

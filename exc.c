@@ -1,18 +1,24 @@
 #include "monty.h"
-
+/**
+ *execute_command - execute the current com
+ *@com: the command
+ *@line_count: num of lines
+ *@stack: the stack
+ */
 void execute_command(char *com, unsigned int line_count, stack_t **stack)
 {
+	int i = 0;
+
 	instruction_t inst[7] = {
-        {"push", my_push},
-        {"pall", my_pall},
+	{"push", my_push},
+	{"pall", my_pall},
 	{"pint", my_pint},
 	{"pop", my_pop},
 	{"swap", my_swap},
 	{"add", my_add},
 	{NULL, NULL},
-    };
+	};
 
-	int i = 0;
 	while ((i < 6))
 	{
 		if (strcmp(com, inst[i].opcode) == 0)

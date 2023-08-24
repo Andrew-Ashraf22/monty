@@ -1,8 +1,14 @@
 #include "monty.h"
 
+/**
+ *my_pop - remove top element
+ *@stack: the stack
+ *@line_number: num of lines
+ */
 void my_pop(stack_t **stack, unsigned int line_number)
 {
 	stack_t *temp;
+
 	if (*stack == NULL)
 	{
 		fprintf(stderr, "Error: L%d: can't pop an empty stack\n", line_number);
@@ -18,6 +24,11 @@ void my_pop(stack_t **stack, unsigned int line_number)
 	free(temp);
 }
 
+/**
+ *my_swap - swap top 2 items
+ *@stack: the stack
+ *@line_number: num of lines
+ */
 void my_swap(stack_t **stack, unsigned int line_number)
 {
 	int holder;
@@ -34,6 +45,11 @@ void my_swap(stack_t **stack, unsigned int line_number)
 	(*stack)->next->n = holder;
 }
 
+/**
+ *my_add - add top 2 items
+ *@stack: the stack
+ *@line_number: num of lines
+ */
 void my_add(stack_t **stack, unsigned int line_number)
 {
 	if (*stack == NULL || (*stack)->next == NULL)

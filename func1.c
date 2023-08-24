@@ -1,5 +1,9 @@
 #include "monty.h"
-
+/**
+ *my_push - push to stack
+ *@stack: the stack
+ *@line_number: num of lines
+ */
 void my_push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new;
@@ -13,11 +17,9 @@ void my_push(stack_t **stack, unsigned int line_number)
 		free_info();
 		exit(EXIT_FAILURE);
 	}
-	
 	if (strcmp(info.hold, "0") != 0)
 	{
 		new->n = atoi(info.hold);
-	
 		if (new->n == 0)
 		{
 			fprintf(stderr, "L%d: usage: push integer\n", line_number);
@@ -33,7 +35,6 @@ void my_push(stack_t **stack, unsigned int line_number)
 		new->n = 0;
 	}
 	new->prev = NULL;
-
 	if (*stack == NULL)
 	{
 		new->next = NULL;
@@ -46,6 +47,12 @@ void my_push(stack_t **stack, unsigned int line_number)
 		*stack = new;
 	}
 }
+
+/**
+ *my_pall - show list
+ *@stack: the stack
+ *@line_number: num of lines
+ */
 void my_pall(stack_t **stack, unsigned int line_number)
 {
 	stack_t *current = *stack;
@@ -58,6 +65,11 @@ void my_pall(stack_t **stack, unsigned int line_number)
 	}
 }
 
+/**
+ *my_pint - prints top of a stack
+ *@stack: the stack
+ *@line_number: num of lines
+ */
 void my_pint(stack_t **stack, unsigned int line_number)
 {
 	if (*stack == NULL)
