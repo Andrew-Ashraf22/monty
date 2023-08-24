@@ -16,10 +16,10 @@ void my_push(stack_t **stack, unsigned int line_number)
 		free_info();
 		exit(EXIT_FAILURE);
 	}
-	
+
 	if (hold[0] == '-')
 		i++;
-	for (; hold[i] != '\0'; i++)
+	for (;(size_t)i < strlen(hold); i++)
 	{
 		if (hold[i] > 57 || hold[i] < 48)
 		{
@@ -42,13 +42,13 @@ void addnode(stack_t **stack, int n)
 	stack_t *new;
 
 	new = malloc(sizeof(stack_t));
-        if (new == NULL)
-        {
-                fprintf(stderr, "Error: malloc failed\n");
-                free_stack(stack);
-                free_info();
-                exit(EXIT_FAILURE);
-        }
+	if (new == NULL)
+	{
+		fprintf(stderr, "Error: malloc failed\n");
+		free_stack(stack);
+		free_info();
+		exit(EXIT_FAILURE);
+	}
 	new->n = n;
 	if (*stack == NULL)
 	{

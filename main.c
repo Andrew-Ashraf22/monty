@@ -1,5 +1,6 @@
 #include "monty.h"
 void nothing(void);
+int checkline(char *linemax);
 inf_s info = {NULL, NULL, NULL};
 /**
 * main - monty interpreter
@@ -27,6 +28,7 @@ int main(int argc, char *argv[])
  */
 void execute_file(const char *m_file, stack_t **stack)
 {
+	int checker = 0;
 	unsigned int line_count = 0;
 	FILE *file = fopen(m_file, "r");
 	char linemax[512];
@@ -47,10 +49,17 @@ void execute_file(const char *m_file, stack_t **stack)
 			continue;
 		}
 		com = malloc(sizeof(linemax));
+
+		checker = checkline(linemax);
+
+		if (checker == 1)
+		{
+			free(com);
+			continue;
+		}
 		if (sscanf(linemax, "%s", com) != 1)
 		{
-			fprintf(stderr, "Error: L%d: Invalid instruction format\n", line_count);
-			exit(EXIT_FAILURE);
+			continue;
 		}
 		info.command = com;
 		strtok(linemax, " \n\t");
@@ -60,4 +69,22 @@ void execute_file(const char *m_file, stack_t **stack)
 	}
 	free_stack(stack);
 	fclose(file);
+}
+/**
+ *checkline - check if line contain chars
+ *@linemax: the line
+ *Return: 0 if contains, 1 if not
+ */
+int checkline(char *linemax)
+{
+	int i = 0;
+
+	for (; linemax[i] != '\0'; i++)
+	{
+		if (linemax[i] != ' ' && linemax[i] != '\t')
+		{
+			return (0);
+		}
+	}
+	return (1);
 }
