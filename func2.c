@@ -62,3 +62,53 @@ void my_add(stack_t **stack, unsigned int line_number)
 	(*stack)->next->n += (*stack)->n;
 	my_pop(stack, line_number);
 }
+
+/**
+ *my_nop - do nothing
+ *@stack: useless
+ *@line_number: useless
+ */
+void my_nop (stack_t **stack, unsigned int line_number)
+{
+	(void)stack;
+	(void)line_number;
+
+	return;
+}
+
+/**
+ *my_sub - sub top 2 items
+ *@stack: the stack
+ *@line_number: num of lines
+ */
+void my_sub(stack_t **stack, unsigned int line_number)
+{
+	if (*stack == NULL || (*stack)->next == NULL)
+	{
+		fprintf(stderr, "Error: L%d: can't sub, stack too short\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	(*stack)->next->n -= (*stack)->n;
+	my_pop(stack, line_number);
+}
+
+/**
+ *my_div - div top 2 items
+ *@stack: the stack
+ *@line_number: num of lines
+ */
+void my_div(stack_t **stack, unsigned int line_number)
+{
+	if (*stack == NULL || (*stack)->next == NULL)
+	{
+		fprintf(stderr, "Error: L%d: can't div, stack too short\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	if ((*stack)->n == 0)
+	{
+		fprintf(stderr, "Error: L%d: division by zero\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	(*stack)->next->n /= (*stack)->n;
+	my_pop(stack, line_number);
+}
