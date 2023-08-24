@@ -13,6 +13,12 @@ void my_push(stack_t **stack, unsigned int line_number)
 	}
 
 	new->n = atoi(info.hold);
+
+	if (!isdigit(new->n))
+	{
+		fprintf(stderr, "L%d: usage: push integer\n", line_number);
+		exit(EXIT_FAILURE);
+	}
 	new->prev = NULL;
 
 	if (*stack == NULL)
