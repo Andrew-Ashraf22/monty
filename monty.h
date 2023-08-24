@@ -53,4 +53,6 @@ void free_info(void);
 /** Functions */
 void my_push(stack_t **stack, unsigned int line_number);
 void my_pall(stack_t **stack, unsigned int line_number);
+void my_pint(stack_t **stack, unsigned int line_number);
+void my_pop(stack_t **stack, unsigned int line_number);
 #endif
