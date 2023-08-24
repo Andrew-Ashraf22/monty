@@ -9,7 +9,7 @@ void my_push(stack_t **stack, unsigned int line_number)
 	char *hold = info.hold;
 	int n, i = 0;
 
-	if (!hold)
+	if (!hold || strcmp(hold, "-") == 0)
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
 		free_stack(stack);

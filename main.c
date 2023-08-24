@@ -41,6 +41,9 @@ void execute_file(const char *m_file, stack_t **stack)
 	while (fgets(linemax, sizeof(linemax), file))
 	{
 		line_count++;
+
+		if (linemax[0] == '\n')
+			continue;
 		com = malloc(sizeof(linemax));
 
 		if (sscanf(linemax, "%s", com) != 1)
