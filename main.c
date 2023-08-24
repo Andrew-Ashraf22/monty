@@ -19,7 +19,6 @@ int main(int argc, char *argv[])
 	execute_file(argv[1], &stack);
 	return (0);
 }
-
 /**
  * execute_file - exc the file
  *@m_file: monty file
@@ -59,6 +58,7 @@ void execute_file(const char *m_file, stack_t **stack)
 		execute_command(com, line_count, stack);
 		free(com);
 	}
+	free(info.hold);
 	free_stack(stack);
 	fclose(file);
 }
