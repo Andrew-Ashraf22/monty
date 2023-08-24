@@ -68,7 +68,7 @@ void my_add(stack_t **stack, unsigned int line_number)
  *@stack: useless
  *@line_number: useless
  */
-void my_nop (stack_t **stack, unsigned int line_number)
+void my_nop(stack_t **stack, unsigned int line_number)
 {
 	(void)stack;
 	(void)line_number;
@@ -86,6 +86,8 @@ void my_sub(stack_t **stack, unsigned int line_number)
 	if (*stack == NULL || (*stack)->next == NULL)
 	{
 		fprintf(stderr, "Error: L%d: can't sub, stack too short\n", line_number);
+		free_stack(stack);
+		free_info();
 		exit(EXIT_FAILURE);
 	}
 	(*stack)->next->n -= (*stack)->n;
@@ -102,11 +104,15 @@ void my_div(stack_t **stack, unsigned int line_number)
 	if (*stack == NULL || (*stack)->next == NULL)
 	{
 		fprintf(stderr, "Error: L%d: can't div, stack too short\n", line_number);
+		free_stack(stack);
+		free_info();
 		exit(EXIT_FAILURE);
 	}
 	if ((*stack)->n == 0)
 	{
 		fprintf(stderr, "Error: L%d: division by zero\n", line_number);
+		free_stack(stack);
+		free_info();
 		exit(EXIT_FAILURE);
 	}
 	(*stack)->next->n /= (*stack)->n;
