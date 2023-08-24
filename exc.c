@@ -2,19 +2,26 @@
 
 void execute_command(char *com, unsigned int line_count, stack_t **stack)
 {
-	if (strcmp(com, "push") == 0)
+	instruction_t inst[] = {
+        {"push", my_push},
+        {"pall", my_pall},
+    };
+
+	int i = 0;
+	while ((long unsigned int)i < sizeof(inst) / sizeof(inst[0]))
 	{
-		my_push(stack, line_count);
-		return;
+		if (strcmp(com, inst[i].opcode) == 0)
+		{
+			inst[i].f(stack, line_count);
+			break;
+		}
+		i++;
 	}
-	else if (strcmp(com, "pall") == 0)
-	{
-		my_pall(stack,line_count);
-		return;
-	}
-	else
+	if ((long unsigned int )i >= sizeof(inst) / sizeof(inst[0]))
 	{
 		fprintf(stderr, "Error: L%d: unknown instruction '%s'\n", line_count, com);
-        	exit(EXIT_FAILURE);
+		free_stack(stack);
+		free_info();
+		exit(EXIT_FAILURE);
 	}
 }
