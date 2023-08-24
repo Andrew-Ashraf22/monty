@@ -41,12 +41,15 @@ typedef struct inf_s
 {
 	char *hold;
 	char *command;
+	FILE *mfile;
 } inf_s;
 
 extern inf_s info;
 
 void execute_file(const char *m_file, stack_t **stack);
 void execute_command(char *com, unsigned int line_count, stack_t **stack);
+void free_stack(stack_t **head);
+void free_info(void);
 /** Functions */
 void my_push(stack_t **stack, unsigned int line_number);
 void my_pall(stack_t **stack, unsigned int line_number);

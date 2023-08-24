@@ -7,7 +7,7 @@
 */
 void execute_file(const char *m_file, stack_t **stack);
 
-inf_s info = {NULL, NULL};
+inf_s info = {NULL, NULL, NULL};
 int main(int argc, char *argv[])
 {
 	stack_t *stack = NULL;
@@ -29,6 +29,7 @@ void execute_file(const char *m_file, stack_t **stack)
 	char linemax[512];
 	char *com = NULL;
 
+	info.mfile = file;
 	if (file == NULL)
 	{
 		fprintf(stderr, "Error: Can't open file '%s'\n", m_file);
@@ -48,10 +49,12 @@ void execute_file(const char *m_file, stack_t **stack)
 			fprintf(stderr, "Error: L%d: Invalid instruction format\n", line_count);
 			exit(EXIT_FAILURE);
 		}
+		info.command = com;
 		strtok(linemax, " \n\t");
 		info.hold = strtok(NULL, " \n\t");
 		execute_command(com, line_count, stack);
 		free(com);
 	}
+	free_stack(stack);
 	fclose(file);
 }
