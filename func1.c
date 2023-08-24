@@ -19,7 +19,7 @@ void my_push(stack_t **stack, unsigned int line_number)
 
 	if (hold[0] == '-')
 		i++;
-	for (;(size_t)i < strlen(hold); i++)
+	for (; (size_t)i < strlen(hold); i++)
 	{
 		if (hold[i] > 57 || hold[i] < 48)
 		{
