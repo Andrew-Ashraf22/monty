@@ -37,7 +37,7 @@ void execute_command(char *com, unsigned int line_count, stack_t **stack)
 	}
 	if (i >= 13)
 	{
-		fprintf(stderr, "Error: L%d: unknown instruction '%s'\n", line_count, com);
+		fprintf(stderr, "L%d: unknown instruction %s\n", line_count, com);
 		free_stack(stack);
 		free_info();
 		exit(EXIT_FAILURE);

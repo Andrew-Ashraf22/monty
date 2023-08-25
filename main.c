@@ -34,7 +34,7 @@ void execute_file(const char *m_file, stack_t **stack)
 	info.mfile = file;
 	if (file == NULL)
 	{
-		fprintf(stderr, "Error: Can't open file '%s'\n", m_file);
+		fprintf(stderr, "Error: Can't open file %s\n", m_file);
 		exit(EXIT_FAILURE);
 	}
 
