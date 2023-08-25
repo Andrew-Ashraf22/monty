@@ -9,7 +9,7 @@ void execute_command(char *com, unsigned int line_count, stack_t **stack)
 {
 	int i = 0;
 
-	instruction_t inst[14] = {
+	instruction_t inst[16] = {
 	{"push", my_push},
 	{"pall", my_pall},
 	{"pint", my_pint},
@@ -23,10 +23,12 @@ void execute_command(char *com, unsigned int line_count, stack_t **stack)
 	{"mod", my_mod},
 	{"pchar", my_pchar},
 	{"pstr", my_pstr},
+	{"rotr", my_rotr},
+	{"rotl", my_rotl},
 	{NULL, NULL},
 	};
 
-	while ((i < 13))
+	while ((i < 15))
 	{
 		if (strcmp(com, inst[i].opcode) == 0)
 		{
@@ -35,7 +37,7 @@ void execute_command(char *com, unsigned int line_count, stack_t **stack)
 		}
 		i++;
 	}
-	if (i >= 13)
+	if (i >= 15)
 	{
 		fprintf(stderr, "L%d: unknown instruction %s\n", line_count, com);
 		free_stack(stack);

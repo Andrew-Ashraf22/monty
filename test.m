@@ -1,14 +1,14 @@
-push 0 Push 0 onto the stack
-push 1 Push 1 onto the stack
+# awdadw
+    push 4
+    pall
+    # wdawdwad
+#d                            #
+   	#dda
 
-push 2
-  push 3
-                   pall    
+     push 5
+   pop
 
-
-                           
-push 4
-
-    push 5    
-      push    6        
-pall
+   push 4
+   push 4
+                 push 6
+     pall

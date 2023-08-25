@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
  */
 void execute_file(const char *m_file, stack_t **stack)
 {
-	unsigned int line_count = 0, j = 0;
+	unsigned int line_count = 0, j = 0, check = 0;
 	FILE *file = fopen(m_file, "r");
 	char linemax[512];
 	char *com = NULL;
@@ -41,15 +41,22 @@ void execute_file(const char *m_file, stack_t **stack)
 	while (fgets(linemax, sizeof(linemax), file))
 	{
 		line_count++;
-
-		if (linemax[0] == '\n' || linemax[0] == '#')
+		check = 0;
+		j = 0;
+		if (linemax[0] == '\n')
 			continue;
-		while (linemax[j])
+		while (strlen(linemax) > j)
 		{
 			if (linemax[j] == '#')
-				continue;
+			{
+				check = 1;
+				break;
+			}
 			j++;
 		}
+
+		if (check == 1)
+			continue;
 		com = malloc(sizeof(linemax));
 
 		if (sscanf(linemax, "%s", com) != 1)
